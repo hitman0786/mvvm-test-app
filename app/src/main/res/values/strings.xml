@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MvvmDemo</string>
+    <string name="splash_info">Welcome To MVVM Demo App</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_email_id">Enter email id</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="enter_topic">Enter Topic</string>
+    <string name="type_description">Type Description</string>
+    <string name="submit">Submit</string>
+
+    <string name="exception">"Something went wrong, please try again"</string>
+</resources>
