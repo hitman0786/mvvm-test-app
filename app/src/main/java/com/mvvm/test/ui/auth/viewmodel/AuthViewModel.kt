@@ -1,4 +1,4 @@
-package com.mvvm.test.ui.auth
+package com.mvvm.test.ui.auth.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

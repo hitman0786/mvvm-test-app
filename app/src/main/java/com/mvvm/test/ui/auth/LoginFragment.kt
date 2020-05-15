@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mvvm.test.R
 import com.mvvm.test.domain.AppState
+import com.mvvm.test.ui.auth.viewmodel.AuthViewModel
 import kotlinx.android.synthetic.main.fragmet_login.*
 
 class LoginFragment: Fragment() {

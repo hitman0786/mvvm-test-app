@@ -62,9 +62,15 @@
         <action
             android:id="@+id/action_detailsFragment_to_addDataFragment"
             app:destination="@id/addDataFragment" />
+        <argument
+            android:name="topic"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addDataFragment"
-        android:name="com.mvvm.test.ui.data.AddDataFragment"
+        android:name="com.mvvm.test.ui.pushdata.AddDataFragment"
         android:label="AddDataFragment" />
 </navigation>
