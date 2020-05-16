@@ -1,4 +1,4 @@
-package com.mvvm.test.ui.home.viewmodel
+package com.mvvm.test.ui.details.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +15,8 @@ class AddDataModel: ViewModel() {
         state.value = AppState.Loading(true)//data start loading
         val data = hashMapOf(
             "topic" to topic,
-            "description" to desp
+            "description" to desp,
+            "time" to System.currentTimeMillis().toString()
         )
 
         db.collection("topics").document()

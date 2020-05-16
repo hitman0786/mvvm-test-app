@@ -13,9 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mvvm.test.R
 import com.mvvm.test.domain.AppState
-import com.mvvm.test.ui.home.viewmodel.AddDataModel
+import com.mvvm.test.ui.details.viewmodel.AddDataModel
 import com.mvvm.test.ui.home.viewmodel.HomeViewModel
-import com.mvvm.test.utils.currentNavigationFragment
 import kotlinx.android.synthetic.main.fragment_add_data.*
 
 class AddDataFragment: Fragment() {
@@ -59,7 +58,7 @@ class AddDataFragment: Fragment() {
 
     private fun updateHomeList(){
         val homeViewModel: HomeViewModel by activityViewModels()
-        homeViewModel.getTopicsResponse()
+        homeViewModel.getTopicsResponse(requireActivity())
         Log.i("TAG", "update home list ")
         //This is use to popup fragment from back stack explicitly
         findNavController().popBackStack(R.id.addDataFragment, true)

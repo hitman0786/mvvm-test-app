@@ -20,7 +20,10 @@ class ListAdapter(
 
     override fun onBindViewHolder(holder: TopicViewHolder, position: Int) {
         val data = list[position]
-        holder.bind(data.fields.topic, data.fields.description, homeFragment)
+        data.fields?.topic?.let { data.fields.description?.let { it1 ->
+            holder.bind(it,
+                it1, homeFragment)
+        } }
     }
 
     override fun getItemCount(): Int = list.size

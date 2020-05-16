@@ -16,6 +16,7 @@ import com.mvvm.test.model.Description
 import com.mvvm.test.model.Topic
 import com.mvvm.test.model.TopicData
 import com.mvvm.test.ui.home.viewmodel.HomeViewModel
+import com.mvvm.test.utils.NetworkConnection
 import com.mvvm.test.utils.currentNavigationFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -32,7 +33,13 @@ class HomeFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.getTopicsResponse()
+        if(NetworkConnection.isNetworkConnected(requireActivity())) {
+            Log.i("TAG", "update home screen UI when internet connected")
+            viewModel.getTopicsResponse(requireActivity())
+        }else{
+            viewModel.getTopicsDataFromLocalDatabase(requireActivity())
+            Log.i("TAG", "update home screen UI when internet is not connected")
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -44,10 +51,8 @@ class HomeFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val currentFragment = requireActivity().supportFragmentManager.currentNavigationFragment
-
         viewModel.getUIState().observe(requireActivity(), Observer {
-            Log.i("TAG", "update home screen UI")
-            if(currentFragment != null && currentFragment.isAdded && currentFragment.isVisible) {
+            if (currentFragment != null && currentFragment.isAdded && currentFragment.isVisible) {
                 handleHomeState(it)
             }
         })
@@ -79,7 +84,8 @@ class HomeFragment: Fragment() {
                     Log.i("TAG", "update home screen UI success state - ${listData?.size}")
                     if (listData != null) {
                         val data = listData.filterIsInstance<TopicData>()
-                        adapter = ListAdapter(data, this@HomeFragment)
+                        val sortedList = data.sortedWith(compareBy({ it.fields?.time?.stringValue }, { it.fields?.topic?.stringValue }))
+                        adapter = ListAdapter(sortedList, this@HomeFragment)
                     }
                 }
 

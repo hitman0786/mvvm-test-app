@@ -1,6 +1,7 @@
 package com.mvvm.test
 
 import android.app.Application
+import com.mvvm.test.localdb.AppDatabase
 import com.mvvm.test.utils.PreferenceUtils
 
 class DemoApp: Application() {
